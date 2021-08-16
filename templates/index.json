@@ -1,5 +1,11 @@
 {
   "sections": {
+    "1629075747a2976b3a": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "{{shop.name}}"
+      }
+    },
     "image_banner": {
       "type": "image-banner",
       "blocks": {
@@ -89,6 +95,7 @@
     }
   },
   "order": [
+    "1629075747a2976b3a",
     "image_banner",
     "featured_products",
     "image_text",
