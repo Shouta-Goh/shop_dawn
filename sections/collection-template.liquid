@@ -344,13 +344,16 @@
         {%- endcapture -%}
 
         <div id="collection-filter-drawer" class="CollectionFilters Drawer Drawer--secondary Drawer--fromRight" aria-hidden="true">
-          <header class="Drawer__Header Drawer__Header--bordered Drawer__Header--center Drawer__Container">
+          {%- comment -%}q
+                    <header class="Drawer__Header Drawer__Header--bordered Drawer__Header--center Drawer__Container">
             <span class="Drawer__Title Heading u-h4">フィルター</span>
 
             <button class="Drawer__Close Icon-Wrapper--clickable" data-action="close-drawer" data-drawer-id="collection-filter-drawer" aria-label="{{ 'header.navigation.close_sidebar' | t }}">
               ✖︎
             </button>
           </header>
+          {%- endcomment -%}
+
 
           <div class="Drawer__Content">
             <div class="Drawer__Main" data-scrollable>
