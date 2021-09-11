@@ -322,7 +322,7 @@
                             </li>
                             {%- endcomment -%}
 
-                            <p>リンク独自作成</p>
+                            {%- comment -%}リンク機能生成{%- endcomment -%}
                             <li class="Linklist__Item {% if current_tags contains tag %}is-selected{% endif %}">
                               <button type="button" class="Text--subdued Link Link--primary {% if current_tags contains tag %}is-active{% endif %}" data-tag="{{ tag | handle }}" data-action="toggle-tag">
                                 {% if current_tags contains tag %}
