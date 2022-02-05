@@ -20,6 +20,7 @@
   {%- comment -%}This is the common part to both template{%- endcomment -%}
 
   {%- if collection.products_count > 0 -%}
+ああああ
     {%- paginate collection.products by section.settings.grid_items_per_page -%}
       <div class="ProductListWrapper">
         <div class="ProductList ProductList--grid {% if paginate.pages > 1 %}ProductList--removeMargin{% endif %} Grid" data-mobile-count="{{ mobile_items_per_row }}" data-desktop-count="{{ desktop_items_per_row }}">
@@ -399,7 +400,6 @@
       {%- endcomment -%}
 
       <div class="CollectionMain">
-        あああああ
         {%- if section.settings.toolbar_position == 'top' -%}
           {{- collection_toolbar -}}
         {%- endif -%}
