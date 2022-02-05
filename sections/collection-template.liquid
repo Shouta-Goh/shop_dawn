@@ -173,13 +173,12 @@
       {%- if quick_links != blank or has_visible_tags -%}
         {%- assign show_filters = true -%}
       {%- endif -%}
-
+ああああああ
       {%- capture collection_toolbar -%}
         {%- if show_filters or section.settings.show_sort_by or section.settings.show_layout_switch -%}
           <div class="CollectionToolbar CollectionToolbar--{{ section.settings.toolbar_position }} {% unless section.settings.show_layout_switch and show_filters == false and section.settings.show_sort_by == false %}CollectionToolbar--reverse{% endunless %}">
             {%- if show_filters or section.settings.show_sort_by -%}
               <div class="CollectionToolbar__Group">
-                ああああああ
                 {%- if show_filters -%}
                   <button class="CollectionToolbar__Item CollectionToolbar__Item--filter Heading {% unless current_tags %}Text--subdued{% endunless %} u-h6 {% if section.settings.filter_position != 'drawer' %}hidden-lap-and-up{% endif %}"
                           data-action="open-drawer"
