@@ -7,6 +7,7 @@
 <link rel="preconnect" href="//swymv3free-01.azureedge.net/code/swym-shopify.js">
 <script id="swym-snippet">
   window.swymLandingURL = document.URL;
+  {%- comment -%}カート取得{%- endcomment -%}
   window.swymCart = {{ cart | json }};
   window.swymPageLoad = function(){
     window.SwymProductVariants = window.SwymProductVariants || {};
@@ -14,6 +15,7 @@
     window.SwymPageData = {}, window.SwymProductInfo = {};
     {%- if product and template.name == 'product' -%}
     var variants = [];
+  {%- comment -%}Product取得{%- endcomment -%}
     window.SwymProductInfo.product = {{ product | json }};
     window.SwymProductInfo.variants = window.SwymProductInfo.product.variants;
     var piu = {{ product.featured_image | img_url: '620x620' | json }};
