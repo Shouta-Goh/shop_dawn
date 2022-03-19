@@ -1,7 +1,8 @@
 <script>
   var wishlistButton = document.querySelector(".wishlist-btn");
+  console.log(wishlistButton);
   
-  function swymCallbackFn(swat ){    
+  function swymCallbackFn(){    
     if(wishlistButton){
       _swat.fetchWrtEventTypeET(fetchCallbackFn, 4);       
       // fetching all wishlist events
@@ -43,12 +44,8 @@ console.log(product_data);
       );
     }
   }
-    if(!window.SwymCallbacks) {
-   window.SwymCallbacks = [];
-  }
-  window.SwymCallbacks.push(swymCallbackFn);
   
- /* function fetchCallbackFn(products){
+  function fetchCallbackFn(products){
     var activeProductId = SwymPageData.empi, 
         activeVariantId = SwymPageData.epi;
     var isInWishlist = products.find(function(p){
@@ -72,5 +69,4 @@ console.log(product_data);
    window.SwymCallbacks = [];
   }
   window.SwymCallbacks.push(swymCallbackFn);
-  */
 </script>
