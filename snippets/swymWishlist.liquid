@@ -39,10 +39,7 @@
       stk:{{ currentVariant.inventory_quantity }} {% if currentVariant.compare_at_price %} ,op:{{currentVariant.compare_at_price}}/100 {% endif %}
     };
     window.SwymPageData = product_data;
-      window._swat.addToWishList(product_data,
-        function(r) {
-          console.log('Added to wishlist');
-        }
+      window._swat.addToWishList(product_data
       );
     }
   }
