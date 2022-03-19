@@ -44,8 +44,12 @@ console.log(product_data);
       );
     }
   }
+    if(!window.SwymCallbacks) {
+   window.SwymCallbacks = [];
+  }
+  window.SwymCallbacks.push(swymCallbackFn);
   
-  function fetchCallbackFn(products){
+ /* function fetchCallbackFn(products){
     var activeProductId = SwymPageData.empi, 
         activeVariantId = SwymPageData.epi;
     var isInWishlist = products.find(function(p){
@@ -69,4 +73,5 @@ console.log(product_data);
    window.SwymCallbacks = [];
   }
   window.SwymCallbacks.push(swymCallbackFn);
+  */
 </script>
