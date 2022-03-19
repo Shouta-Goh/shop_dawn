@@ -148,80 +148,8 @@
   
 {% include 'swymSnippet' %}
     
-<script>
-  var wishlistButton = document.querySelector(".wishlist-btn");
-  alert("aaa");
-  console.log(wishlistButton);
-  
-  function swymCallbackFn(){    
-    if(wishlistButton){
-      _swat.fetchWrtEventTypeET(fetchCallbackFn, 4);       
-      // fetching all wishlist events
-  {%- comment -%}Product取得{%- endcomment -%}
-    window.SwymProductInfo.product = {{ product | json }};
-    window.SwymProductInfo.variants = window.SwymProductInfo.product.variants;
-    var piu = {{ product.featured_image | img_url: '620x620' | json }};
-    {% if product.selected_or_first_available_variant %}
-    {% assign currentVariant = product.selected_or_first_available_variant%}
-    {% else %}
-    {% assign currentVariant = product.variants[0] %}
-    {%- endif -%}
-    {%- for variant in product.variants -%}
-      {% if variant.selected %}
-        {% assign currentVariant = variant %}
-      {% endif %}
-      SwymProductVariants[{{variant.id|json}}] = {
-        empi:window.SwymProductInfo.product.id,epi:{{variant.id|json}},
-        dt: {{ product.title | json }},
-        du: "{{ shop.url }}{{ product.url }}",
-        iu: {% if variant.image %} {{ variant | img_url: '620x620' | json }} {% else %} piu {% endif %},
-        stk: {{variant.inventory_quantity}},
-        pr: {{variant.price}}/100,
-        ct: window.SwymProductInfo.product.type,
-        {% if variant.compare_at_price %} op: {{variant.compare_at_price}}/100, {% endif %}
-        variants: [{ {{ variant.title | json }} : {{variant.id|json}}}]
-      };
-    {%- endfor -%}
-    window.SwymProductInfo.currentVariant = {{currentVariant.id | json}};
-    var product_data = {
-      et: 1, empi: window.SwymProductInfo.product.id, epi: window.SwymProductInfo.currentVariant,
-      dt: {{ product.title | json }}, du: "{{ shop.url }}{{ product.url }}",
-      ct: window.SwymProductInfo.product.type, pr: {{ currentVariant.price }}/100,
-      iu: {% if currentVariant.image %} {{ currentVariant | img_url: '620x620' | json }} {% else %} piu {% endif %}, variants: [{ {{currentVariant.title | json}} : {{currentVariant.id | json}} }],
-      stk:{{ currentVariant.inventory_quantity }} {% if currentVariant.compare_at_price %} ,op:{{currentVariant.compare_at_price}}/100 {% endif %}
-    };
-console.log(product_data);
-    window.SwymPageData = product_data;
-      window._swat.addToWishList(product_data
-      );
-    }
-  }
-  
-  function fetchCallbackFn(products){
-    var activeProductId = SwymPageData.empi, 
-        activeVariantId = SwymPageData.epi;
-    var isInWishlist = products.find(function(p){
-      return p.empi == activeProductId && p.epi == activeVariantId;
-    });
-    if(isInWishlist){
-      wishlistButton.setAttribute("disabled", true);
-      wishlistButton.innerHTML = "Saved";
-    } else {
-      wishlistButton.addEventListener("click", function(e){
-        if(SwymPageData){
-          SwymPageData.et = 4;	// et 4 stands for wishlist event type
-          _swat.addToWishList(SwymPageData, function(e){
-            wishlistButton.innerHTML = "Saved"; 
-          });
-        }
-      });
-    }
-  }
-  if(!window.SwymCallbacks){
-   window.SwymCallbacks = [];
-  }
-  window.SwymCallbacks.push(swymCallbackFn);
-</script>
-
+    
+{% include 'swymWishlist' %}
+ 
 </body>
 </html>
