@@ -1,13 +1,6 @@
 <script>
-  swat.fetchLists({
-    callbackFn: function(lists) {
-
-      console.log("Fetched my lists", lists.length);
-    },
-    errorFn: function(xhrObj) {
-      // something went wrong
-    }
-  });
+window._swat.fetch( function(r) {
+  console.log(r);
+});
   
-  alert("aaa")
 </script>
