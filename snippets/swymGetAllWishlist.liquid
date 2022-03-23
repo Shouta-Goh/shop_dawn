@@ -4,6 +4,47 @@
      // your API calls go here
      // use swat within this scope, 
      // alternatively you can use window._swat
+        {%- comment -%}Product取得{%- endcomment -%}
+    window.SwymProductInfo.product = {{ product | json }};
+    window.SwymProductInfo.variants = window.SwymProductInfo.product.variants;
+    var piu = {{ product.featured_image | img_url: '620x620' | json }};
+    {% if product.selected_or_first_available_variant %}
+    {% assign currentVariant = product.selected_or_first_available_variant%}
+    {% else %}
+    {% assign currentVariant = product.variants[0] %}
+    {%- endif -%}
+    {%- for variant in product.variants -%}
+      {% if variant.selected %}
+        {% assign currentVariant = variant %}
+      {% endif %}
+      SwymProductVariants[{{variant.id|json}}] = {
+        empi:window.SwymProductInfo.product.id,epi:{{variant.id|json}},
+        dt: {{ product.title | json }},
+        du: "{{ shop.url }}{{ product.url }}",
+        iu: {% if variant.image %} {{ variant | img_url: '620x620' | json }} {% else %} piu {% endif %},
+        stk: {{variant.inventory_quantity}},
+        pr: {{variant.price}}/100,
+        ct: window.SwymProductInfo.product.type,
+        {% if variant.compare_at_price %} op: {{variant.compare_at_price}}/100, {% endif %}
+        variants: [{ {{ variant.title | json }} : {{variant.id|json}}}]
+      };
+    {%- endfor -%}
+    window.SwymProductInfo.currentVariant = {{currentVariant.id | json}};
+    var product_data = {
+      et: 1, empi: window.SwymProductInfo.product.id, epi: window.SwymProductInfo.currentVariant,
+      dt: {{ product.title | json }}, du: "{{ shop.url }}{{ product.url }}",
+      ct: window.SwymProductInfo.product.type, pr: {{ currentVariant.price }}/100,
+      iu: {% if currentVariant.image %} {{ currentVariant | img_url: '620x620' | json }} {% else %} piu {% endif %}, variants: [{ {{currentVariant.title | json}} : {{currentVariant.id | json}} }],
+      stk:{{ currentVariant.inventory_quantity }} {% if currentVariant.compare_at_price %} ,op:{{currentVariant.compare_at_price}}/100 {% endif %}
+    };
+      console.log(product_data);
+    window._swat.addToWishList(product_data,
+  function(r) {
+    console.log('Added to wishlist');
+  }
+);
+    
+    
     //①リスト取得
     swat.fetchLists({
       callbackFn: function(lists) {
