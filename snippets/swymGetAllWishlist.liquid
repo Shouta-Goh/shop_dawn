@@ -4,19 +4,29 @@
      // your API calls go here
      // use swat within this scope, 
      // alternatively you can use window._swat
-       
+       let lists_obj = [];
     //①リスト取得
     swat.fetchLists({
       callbackFn: function(lists) {
 
         console.log("Fetched my lists", lists);
-        
-        alert("aaa")
+        lists_obj = lists;
       },
       errorFn: function(xhrObj) {
         // something went wrong
       }
     });
+    
+            //②リストIDを取得
+        const firstListId = lists_obj[0].lid;
+        console.log(firstListId);
+        if(firstListId)
+          swat.fetchListDetails({lid: firstListId}, function(listContents){
+
+          }, function(xhrObj) {
+            // something went wrong
+          })
+        }
   }
   
   if(!window.SwymCallbacks) {
