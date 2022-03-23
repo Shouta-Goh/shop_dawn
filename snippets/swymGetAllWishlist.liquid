@@ -20,7 +20,7 @@
             //②リストIDを取得
         const firstListId = lists_obj[0].lid;
         console.log(firstListId);
-        if(firstListId)
+    if(firstListId){
           swat.fetchListDetails({lid: firstListId}, function(listContents){
 
           }, function(xhrObj) {
