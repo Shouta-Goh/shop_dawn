@@ -1,4 +1,19 @@
 <script>
+  var newListDef = {
+  "lname": "New List name",
+};
+// Add lprops if needed
+// newListDef.lprops = {customVal1: "custom value"};
+// Pass fromlid if that list needs to duplicated
+// stParams.fromlid = "list id to duplicate from"; 
+
+swat.createList(newListDef, function(newListObj){
+  // successfully created list
+  console.log("New list created with listid", newListObj.lid);
+}, function(xhrObject) {
+  // something went wrong
+});
+  
   swat.fetchLists({
   callbackFn: function(lists) {
 
