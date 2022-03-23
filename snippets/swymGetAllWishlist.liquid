@@ -5,21 +5,28 @@
      // use swat within this scope, 
      // alternatively you can use window._swat
        
+    //①リスト取得
     swat.fetchLists({
       callbackFn: function(lists) {
 
         console.log("Fetched my lists", lists);
+        
+        //②リストIDを取得
+        const firstListId = lists[0].lid;
+        
+        if(firstListId)
+          swat.fetchListDetails({lid: firstListId}, function(listContents){
+
+          }, function(xhrObj) {
+            // something went wrong
+          })
+        }
       },
       errorFn: function(xhrObj) {
         // something went wrong
       }
     });
-    
-    swat.fetchListDetails({lid: "4715d976-7bdb-4d29-b0de-e7f5e95755c4"}, function(listContents){
-
-    }, function(xhrObj) {
-      // something went wrong
-    });
+   
   }
   if(!window.SwymCallbacks) {
    window.SwymCallbacks = [];
