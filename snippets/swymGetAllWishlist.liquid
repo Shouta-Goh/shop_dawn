@@ -1,0 +1,12 @@
+<script>
+  swat.fetchLists({
+  callbackFn: function(lists) {
+
+    console.log("Fetched my lists", lists.length);
+  },
+  errorFn: function(xhrObj) {
+    // something went wrong
+  }
+});
+  
+</script>
