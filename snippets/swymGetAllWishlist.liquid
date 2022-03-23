@@ -12,15 +12,15 @@
         console.log("Fetched my lists", lists);
         
         //②リストIDを取得
-        const firstListId = lists[0].lid;
-        console.log(firstListId);
-        if(firstListId)
-          swat.fetchListDetails({lid: firstListId}, function(listContents){
+//         const firstListId = lists[0].lid;
+//         console.log(firstListId);
+//         if(firstListId)
+//           swat.fetchListDetails({lid: firstListId}, function(listContents){
 
-          }, function(xhrObj) {
-            // something went wrong
-          })
-        }
+//           }, function(xhrObj) {
+//             // something went wrong
+//           })
+//         }
       },
       errorFn: function(xhrObj) {
         // something went wrong
