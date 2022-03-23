@@ -13,7 +13,7 @@
         
         //②リストIDを取得
         const firstListId = lists[0].lid;
-        
+        console.log(firstListId);
         if(firstListId)
           swat.fetchListDetails({lid: firstListId}, function(listContents){
 
@@ -26,8 +26,8 @@
         // something went wrong
       }
     });
-   
   }
+  
   if(!window.SwymCallbacks) {
    window.SwymCallbacks = [];
   }
