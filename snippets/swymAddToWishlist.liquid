@@ -41,11 +41,13 @@
     };
       console.log(product_data);
   
+ 
     wishlistButton.addEventListener("click", function(e){
-        window._swat.addToWishList(product_data,
+      window._swat.addToWishList(product_data,
         function(r) {
           console.log('Added to wishlist');
-        })
+        }
+      );
       });
   }
   if(!window.SwymCallbacks) {
