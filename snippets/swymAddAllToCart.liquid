@@ -1,7 +1,37 @@
 <script>
 // the compiled JSX markup received from the "writing the button markup" step. Please fill it in from the first step.
 function SAHeader(props, getHandler){
-
+  return (
+    <header selector="#swym-sa-header" className="App-header">
+      <div className="headerActions">
+        <div className="searchActWrap">
+        	<Button btnType="unstyled">
+        	</Button>
+        </div>
+        <div className="titleWrap">
+        	<h1 className="swym_color_text-contrast">{props.Strings.SATitle}</h1>
+        	<p className="swym_color_text-contrast">{props.Strings.SASubtitle}</p>
+        </div>
+        <div className="closeActWrap">
+        	<Button onClick={getHandler("closeSaHandler")} btnType="unstyled">
+        		X
+        	</Button>
+        </div>
+      </div>
+      {props.showSearch ? <Search /> : ""}
+      {
+        (props.interestedProducts && props.interestedProducts.length > 1 && (props.activeTab == "wishlist" || props.activeTab == "interested")) ?
+        (
+          <div className="add-all-to-cart">
+            <Button onClick={getHandler("AddAllWishlistToCart")}
+              className="Swym-PrimaryTextColor primaryAct" btnType="elevated_twoTone" icon="addtocart">
+              Add all to cart
+            </Button>
+          </div>
+        ) : ""
+      }
+    </header>
+  );
 }
 
 //This function directs to the cart on the button click after adding the items to the cart
