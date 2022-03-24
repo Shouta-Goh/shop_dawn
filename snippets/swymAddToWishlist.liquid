@@ -20,7 +20,7 @@
     } else {
       wishlistButton.addEventListener("click", function(e){
         if(SwymPageData){
-          console.log("SwymPageData:",SwymPageData);
+          console.log("SwymPageData:",window);
           SwymPageData.et = 4;	// et 4 stands for wishlist event type
           _swat.addToWishList(SwymPageData, function(e){
             wishlistButton.innerHTML = "Saved"; 
