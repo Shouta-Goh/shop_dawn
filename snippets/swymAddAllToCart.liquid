@@ -1,0 +1,51 @@
+<script>
+// the compiled JSX markup received from the "writing the button markup" step. Please fill it in from the first step.
+function SAHeader(props, getHandler){
+
+}
+
+//This function directs to the cart on the button click after adding the items to the cart
+function swymAddMultipleToCartAndRedirect(episOrVariantIds, successCallback, errorCallback) {
+  var formData = new FormData();
+  episOrVariantIds.forEach(function(epiOrVariantId) {
+    formData.append("id[]", epiOrVariantId);
+  });
+  var request = new XMLHttpRequest();
+  request.addEventListener("load", function() {
+    if(this.status == 200) {
+      window.location = "/cart";
+      if(successCallback) successCallback(this);
+    } else {
+      if(errorCallback) errorCallback(this);
+    }
+  });
+  request.open("POST", "/cart/add");
+  request.send(formData);
+}
+
+function swymCallbackFn(swat){
+  SwymUiCore.registerComponent("SAHeader", SAHeader); 
+  //Handler function that fetches the state from the store and calls the redirect function
+  SwymUiCore.addHandler("AddAllWishlistToCart", function(store,props) {
+    props.currentTarget.innerHTML = "Adding...";
+    allProds = store.getState()["interestedProducts"];
+    var epis=[];
+    for (var i=0;i < allProds.length;i++) {
+      epis.push(allProds[i]["epi"]);
+    }
+    swymAddMultipleToCartAndRedirect(epis, function(xhr) {}, function(xhr) {});
+  });
+}
+
+if(!window.SwymCallbacks){
+ window.SwymCallbacks = [];
+}
+window.SwymCallbacks.push(swymCallbackFn);
+</script>
+
+<style id="swym-all">
+.add-all-to-cart {
+  padding: 8px;
+  text-align: right;
+}
+</style>
