@@ -626,3 +626,8 @@ class VariantRadios extends VariantSelects {
 }
 
 customElements.define('variant-radios', VariantRadios);
+
+
+
+//2022.5.29 Add
+alert("aaaa")
