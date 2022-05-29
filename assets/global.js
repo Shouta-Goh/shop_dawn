@@ -633,7 +633,7 @@ customElements.define('variant-radios', VariantRadios);
 var live_url = window.location.href;
 var result = live_url.includes('form_type=customer');
 var input_val = document.querySelector('#NewsletterForm--footer').value.length;
-console.log(live_url,result);
+console.log(live_url,result,input_val);
 if(result && input_val != 0){
     const add_ele = document.createElement("h3");
     add_ele.innerText = "You have already subscribed!";
