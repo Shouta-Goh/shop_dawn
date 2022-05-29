@@ -630,4 +630,13 @@ customElements.define('variant-radios', VariantRadios);
 
 
 //2022.5.29 Add
-alert("aaaa")
+var live_url = window.location.href;
+var result = live_url.includes('form_type=customer');
+var input_val = document.querySelector('#NewsletterForm--footer').value.length;
+console.log(live_url,result);
+if(result && input_val != 0){
+    const add_ele = document.createElement("h3");
+    add_ele.innerText = "You have already subscribed!";
+    document.querySelector('.newsletter-form__field-wrapper').appendChild(add_ele);
+    add_ele.classList.add('newsletter_already_subscribe','newsletter-form__message','form__message');
+}
